@@ -1,24 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import Navbar from "./components/Navbar";
+import Home from "./screens/Home";
+import Services from "./screens/Services";
+import "./assets/css/globalStyle.css";
+import { BrowserRouter, Switch, Route } from "react-router-dom"; //npm install react-router-dom
+
+const data = {
+  nama: "evan",
+  umur: 17,
+};
 
 function App() {
+  const { nama, umur } = data;
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter> {/* BrowserRouter harus membungkus Switch, Route, Link */}
+      <Navbar />
+      {/* <Home/>
+      <Services/> */}
+      <Switch> 
+        <Route component={Services} path="/services" />
+        <Route component={Home} path="/" exact />
+        <Route component={Services} path="/about" />
+        <Route component={Services} path="*" />
+      </Switch>
+
+      {/* <Footer/> */}
+      {/* self closing tag */}
+    </BrowserRouter>
   );
 }
 
